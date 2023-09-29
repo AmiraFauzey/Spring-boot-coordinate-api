@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
-@Table(name="POSTCODELOCATION")
+@Table(name="postcodelatlng")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,15 +18,15 @@ public class PostcodeLatitudeLongitude implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "POSTCODELOCATION_ID")
+    @Column(name = "id")
     private Long  postcodeLocationId;
 
-    @Column(name = "POSTCODE")
+    @Column(name = "postcode")
     private String postcode;
 
-    @Column(name = "LATITUDE")
-    private String latitude;
+    @Column(name = "latitude")
+    private double latitude;
 
-    @Column(name = "LONGITUDE")
-    private String longitude;
+    @Column(name = "longitude")
+    private double longitude;
 }

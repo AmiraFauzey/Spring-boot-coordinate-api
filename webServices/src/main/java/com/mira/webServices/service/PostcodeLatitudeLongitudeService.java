@@ -37,10 +37,10 @@ public class PostcodeLatitudeLongitudeService {
         LOGGER.info("Received request to calculate distance between postal codes: {} and {}", postalCode1, postalCode2);
 
         double distance = calculateHaversineDistance(
-                Double.parseDouble(location1.getLatitude()),
-                Double.parseDouble(location1.getLongitude()),
-                Double.parseDouble(location2.getLatitude()),
-                Double.parseDouble(location2.getLongitude())
+                location1.getLatitude(),
+                location1.getLongitude(),
+                location2.getLatitude(),
+                location2.getLongitude()
         );
 
         // Round the distance to two decimal places
@@ -61,8 +61,8 @@ public class PostcodeLatitudeLongitudeService {
     private Location mapLocation(PostcodeLatitudeLongitude location) {
         Location mappedLocation = new Location();
         mappedLocation.setPostalCode(location.getPostcode());
-        mappedLocation.setLatitude(Double.parseDouble(location.getLatitude()));
-        mappedLocation.setLongitude(Double.parseDouble(location.getLongitude()));
+        mappedLocation.setLatitude(location.getLatitude());
+        mappedLocation.setLongitude(location.getLongitude());
         return mappedLocation;
     }
 
