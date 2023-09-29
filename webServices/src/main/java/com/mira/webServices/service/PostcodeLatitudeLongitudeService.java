@@ -100,7 +100,7 @@ public class PostcodeLatitudeLongitudeService {
         location.setLatitude(postcodeLatitudeLongitude.getLatitude());
         location.setLongitude(postcodeLatitudeLongitude.getLongitude());
 
-        // Save the updated bookmark
+        // Save the updated coordinate
         return postcodeLatitudeLongitudeRepository.save(location);
     }
 }
