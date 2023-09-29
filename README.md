@@ -44,9 +44,6 @@ spring.datasource.url=jdbc:mysql://localhost:3306/ukpostcodesmysql?allowPublicKe
 spring.datasource.username=root
 spring.datasource.password=au153E5Y9%
 spring.jpa.show-sql = true
-
-## Hibernate Properties
-# The SQL dialect makes Hibernate generate better SQL for the chosen database
 spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQLDialect
 ```
 
