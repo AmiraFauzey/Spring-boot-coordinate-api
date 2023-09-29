@@ -26,7 +26,7 @@ public class PostcodeLatitudeLongitudeController {
         return response;
     }
 
-    //3. Update the Bookmark
+    //3. Update the coordinate
     @PutMapping("{postcodeLocationId}")
     public PostcodeLatitudeLongitude updateCoordinate(
             @PathVariable Long postcodeLocationId,
