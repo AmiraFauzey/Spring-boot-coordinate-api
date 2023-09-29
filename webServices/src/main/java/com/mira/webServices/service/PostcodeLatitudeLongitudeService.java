@@ -29,6 +29,7 @@ public class PostcodeLatitudeLongitudeService {
         PostcodeLatitudeLongitude location1 = postcodeLatitudeLongitudeRepository.findByPostcode(postalCode1);
         PostcodeLatitudeLongitude location2 = postcodeLatitudeLongitudeRepository.findByPostcode(postalCode2);
 
+        //Check if location is exist in db or not
         if (location1 == null || location2 == null) {
             throw new ResourceNotFoundException("One or both postal codes not found.");
         }
@@ -36,6 +37,7 @@ public class PostcodeLatitudeLongitudeService {
         // Log the request details
         LOGGER.info("Received request to calculate distance between postal codes: {} and {}", postalCode1, postalCode2);
 
+        //calculate the distance between two postal codes
         double distance = calculateHaversineDistance(
                 location1.getLatitude(),
                 location1.getLongitude(),
@@ -45,6 +47,7 @@ public class PostcodeLatitudeLongitudeService {
 
         // Round the distance to two decimal places
         double roundedDistance = Math.round(distance * 100.0) / 100.0;
+
 
         DistanceResponse response = new DistanceResponse();
         response.setLocation1(mapLocation(location1));
@@ -58,6 +61,7 @@ public class PostcodeLatitudeLongitudeService {
         return response;
     }
 
+    //mapping a PostcodeLatitudeLongitude entity to a Location object
     private Location mapLocation(PostcodeLatitudeLongitude location) {
         Location mappedLocation = new Location();
         mappedLocation.setPostalCode(location.getPostcode());
