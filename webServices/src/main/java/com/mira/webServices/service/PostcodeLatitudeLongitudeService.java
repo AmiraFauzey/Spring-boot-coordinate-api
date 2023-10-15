@@ -5,6 +5,7 @@ import com.mira.webServices.model.DistanceResponse;
 import com.mira.webServices.model.Location;
 import com.mira.webServices.model.PostcodeLatitudeLongitude;
 import com.mira.webServices.repository.PostcodeLatitudeLongitudeRepository;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -48,10 +49,15 @@ public class PostcodeLatitudeLongitudeService {
         // Round the distance to two decimal places
         double roundedDistance = Math.round(distance * 100.0) / 100.0;
 
+        //copy data from entity to the POJO class
+        //its now safe to expose the pojo to the external user
+        ModelMapper entityToDtoMapper = new ModelMapper();
+        Location mappedLocation1 = entityToDtoMapper.map(location1,Location.class);
+        Location mappedLocation2 = entityToDtoMapper.map(location2,Location.class);
 
         DistanceResponse response = new DistanceResponse();
-        response.setLocation1(mapLocation(location1));
-        response.setLocation2(mapLocation(location2));
+        response.setLocation1(mappedLocation1);
+        response.setLocation2(mappedLocation2);
         response.setDistance(roundedDistance);
         response.setUnit("km");
 
@@ -62,13 +68,13 @@ public class PostcodeLatitudeLongitudeService {
     }
 
     //mapping a PostcodeLatitudeLongitude entity to a Location object
-    private Location mapLocation(PostcodeLatitudeLongitude location) {
+    /*private Location mapLocation(PostcodeLatitudeLongitude location) {
         Location mappedLocation = new Location();
         mappedLocation.setPostalCode(location.getPostcode());
         mappedLocation.setLatitude(location.getLatitude());
         mappedLocation.setLongitude(location.getLongitude());
         return mappedLocation;
-    }
+    }*/
 
     private double calculateHaversineDistance(double latitude1, double longitude1, double latitude2, double longitude2) {
 

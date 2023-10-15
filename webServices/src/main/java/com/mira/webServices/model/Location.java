@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class Location {
 
-    private String postalCode;
+    private String postcode;
     private double latitude;
     private double  longitude;
 }
